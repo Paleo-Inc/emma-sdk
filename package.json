@@ -2,7 +2,7 @@
   "name": "emma-sdk",
   "version": "1.0.0",
   "description": "Npm sdk package which provide helper functions when writing integration code in Emma",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "files": [
     "lib/**/*"
   ],

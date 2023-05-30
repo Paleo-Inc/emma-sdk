@@ -22,4 +22,10 @@ export default class EmmaSdk {
       this.scope = data.scope;
     }
   }
+
+  getauthenticationType() {
+    return this.authenticationType;
+  }
 }
+
+export { AuthenticationEnum };
