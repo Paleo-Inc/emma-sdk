@@ -1,0 +1,25 @@
+{
+  "name": "emma-sdk",
+  "version": "1.0.0",
+  "description": "Npm sdk package which provide helper functions when writing integration code in Emma",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Paleo-Inc/emma-sdk.git"
+  },
+  "keywords": [
+    "Emma",
+    "SDK",
+    "emma-sdk",
+    "paleo-sdk"
+  ],
+  "author": "maxpaleo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Paleo-Inc/emma-sdk/issues"
+  },
+  "homepage": "https://github.com/Paleo-Inc/emma-sdk#readme"
+}
