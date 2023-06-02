@@ -10,7 +10,7 @@ export default class EmmaSdk {
   constructor() {
     this.authenticationType = AuthenticationEnum.HEADERBEARER;
   }
-  setauthenticationType(data: AuthenticationType) {
+  setAuthenticationType(data: AuthenticationType) {
     this.authenticationType = data.type;
     if (data.authorizationUrl) {
       this.authorizationUrl = data.authorizationUrl;
@@ -23,7 +23,7 @@ export default class EmmaSdk {
     }
   }
 
-  getauthenticationType() {
+  getAuthenticationType() {
     return this.authenticationType;
   }
 }
