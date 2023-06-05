@@ -1,12 +1,20 @@
 import { AuthenticationEnum } from "./enum";
 import { fetcher, HttpMethod } from "./fetcher";
-import { AuthenticationType, InputType, executeFunctionType } from "./types";
+import {
+  AuthenticationType,
+  FixedHeaderType,
+  InputType,
+  executeFunctionType,
+} from "./types";
 
 export default class EmmaSdk {
   authenticationType: AuthenticationEnum;
   authorizationUrl?: string | null;
   tokenUrl?: string | null;
+  authorizationUrlHeader: FixedHeaderType[] | undefined;
+  tokenUrlHeader: FixedHeaderType[] | undefined;
   scope?: string[] | null;
+  customKey?: string;
   userInput?: InputType[];
   [key: string]: any;
 
@@ -20,6 +28,15 @@ export default class EmmaSdk {
     }
     if (data.tokenUrl) {
       this.tokenUrl = data.tokenUrl;
+    }
+    if (data.customKey) {
+      this.customKey = data.customKey;
+    }
+    if (data.authorizationUrlHeader) {
+      this.authorizationUrlHeader = data.authorizationUrlHeader;
+    }
+    if (data.tokenUrlHeader) {
+      this.tokenUrlHeader = data.tokenUrlHeader;
     }
     if (data.scope) {
       this.scope = data.scope;
@@ -67,6 +84,23 @@ export default class EmmaSdk {
     this.executionFunction = execute;
   }
 
+  getHeaders() {
+    let headers: any = {};
+    if (this.authenticationType === AuthenticationEnum.HEADERBEARER) {
+      headers = {
+        Authorization: `Bearer ${this.token}`,
+      };
+    } else if (
+      this.authenticationType == AuthenticationEnum.CUSTOMHEADER &&
+      this.customKey
+    ) {
+      headers = {
+        [this.customKey]: this.token,
+      };
+    }
+    return headers;
+  }
+
   async runFunction() {
     if (this.executionFunction) {
       let inputValues: any = {};
@@ -75,7 +109,12 @@ export default class EmmaSdk {
           inputValues[key] = this[key];
         }
       }
-      const returnValue = await this.executionFunction(fetcher);
+      const runFetcher = async (options: any) => {
+        const authHeader = this.getHeaders();
+        options.headers = { ...options.headers, ...authHeader };
+        return fetcher(options);
+      };
+      const returnValue = await this.executionFunction(runFetcher);
       return returnValue;
     }
     return "No Values";

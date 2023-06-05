@@ -4,6 +4,8 @@ import { AxiosFetcherOptions, AxiosFetcherResponse } from "./fetcher";
 export type AuthenticationType = {
   type: AuthenticationEnum;
   authorizationUrl?: string;
+  authorizationUrlHeader?: FixedHeaderType[];
+  tokenUrlHeader?: FixedHeaderType[];
   tokenUrl?: string;
   scope?: string[];
   customKey?: string;
@@ -12,6 +14,11 @@ export type AuthenticationType = {
 export type InputType = {
   key: string;
   type: string;
+};
+
+export type FixedHeaderType = {
+  key: string;
+  value: string;
 };
 
 export type AxiosFetcherFunction<T> = (
