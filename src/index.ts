@@ -1,5 +1,5 @@
 import { AuthenticationEnum } from "./enum";
-import { fetcher, HttpMethod } from "./fetcher";
+import { fetcher, HttpMethod } from "./cross-fetcher";
 import {
   AuthenticationType,
   FixedHeaderType,
@@ -109,10 +109,10 @@ export default class EmmaSdk {
           inputValues[key] = this[key];
         }
       }
-      const runFetcher = async (options: any) => {
+      const runFetcher = async (url: string, options: any) => {
         const authHeader = this.getHeaders();
         options.headers = { ...options.headers, ...authHeader };
-        return fetcher(options);
+        return fetcher(url, options);
       };
       const returnValue = await this.executionFunction(runFetcher);
       return returnValue;

@@ -1,5 +1,5 @@
+import { FetcherOptions } from "./cross-fetcher";
 import { AuthenticationEnum } from "./enum";
-import { AxiosFetcherOptions, AxiosFetcherResponse } from "./fetcher";
 
 export type AuthenticationType = {
   type: AuthenticationEnum;
@@ -21,8 +21,6 @@ export type FixedHeaderType = {
   value: string;
 };
 
-export type AxiosFetcherFunction<T> = (
-  options: AxiosFetcherOptions<T>
-) => Promise<AxiosFetcherResponse<T>>;
+type FetcherFunction<T> = (url: string, options?: FetcherOptions) => Promise<T>;
 
-export type executeFunctionType = (fetcher: AxiosFetcherFunction<any>) => void;
+export type executeFunctionType = (fetcher: FetcherFunction<any>) => void;
