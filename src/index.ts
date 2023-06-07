@@ -78,7 +78,7 @@ export default class EmmaSdk {
     if (isInputEmpty) {
       return {
         status: false,
-        message: "User input are empty",
+        message: "User input is empty",
       };
     }
     this.executionFunction = execute;
