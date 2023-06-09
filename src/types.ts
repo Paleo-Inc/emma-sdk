@@ -7,6 +7,10 @@ export type AuthenticationType = {
   authorizationUrlHeader?: FixedHeaderType[];
   tokenUrlHeader?: FixedHeaderType[];
   tokenUrl?: string;
+  paramName?: string;
+  getConnectionName: (fetcher: FetcherFunction<any>) => string;
+  params?: InputType[];
+  instructionUrl?: string;
   scope?: string[];
   customKey?: string;
 };
@@ -14,6 +18,9 @@ export type AuthenticationType = {
 export type InputType = {
   key: string;
   type: string;
+  name: string;
+  description: string;
+  placeholder?: string;
 };
 
 export type FixedHeaderType = {
