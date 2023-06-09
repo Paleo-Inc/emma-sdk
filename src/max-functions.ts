@@ -1,6 +1,4 @@
-
 // -- Authentication --
-
 emma.setAuthentication({
     type: type, //
     instructionsUrl: "example-documentation.com", // Shown for more info on the auth process - Optional 
