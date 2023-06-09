@@ -1,8 +1,6 @@
 
 // -- Authentication --
 
-import EmmaSdk from ".";
-
 emma.setAuthentication({
     type: type, //
     instructionsUrl: "example-documentation.com", // Shown for more info on the auth process - Optional 
@@ -26,8 +24,7 @@ setTokenPrefix(tokenPrefix),
 
 // -- Make Object Schema --
 // The developer makes a schema variable to set up the structure for incoming data. They define keys for each data point, specify the data type, and provide descriptions, and so on.
-
-  let exampleSchema = emma.makeObjectSchema({
+let exampleSchema = emma.makeObjectSchema({
     type: emma.ValueType.Object, //Maybe we don't need this because it will always be an object?
     properties = {
       name: {
@@ -100,5 +97,4 @@ emma.addDataConnection({
 
 // -- Set network domain  --
 // This function sets the domain that will allow the integration to access data from. 
-
 emma.addNetworkDomain("twilio.com");
