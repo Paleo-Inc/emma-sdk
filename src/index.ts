@@ -11,8 +11,8 @@ export default class EmmaSdk {
   authenticationType: AuthenticationEnum;
   authorizationUrl?: string | null;
   tokenUrl?: string | null;
-  authorizationUrlHeader: FixedHeaderType[] | undefined;
-  tokenUrlHeader: FixedHeaderType[] | undefined;
+  authorizationParams: FixedHeaderType[] | undefined;
+  tokenParams: FixedHeaderType[] | undefined;
   scope?: string[] | null;
   customKey?: string;
   userInput?: InputType[];
@@ -21,7 +21,7 @@ export default class EmmaSdk {
   constructor() {
     this.authenticationType = AuthenticationEnum.HEADERBEARER;
   }
-  setAuthenticationType(data: AuthenticationType) {
+  setAuthentication(data: AuthenticationType) {
     this.authenticationType = data.type;
     if (data.authorizationUrl) {
       this.authorizationUrl = data.authorizationUrl;
@@ -64,7 +64,7 @@ export default class EmmaSdk {
     return inputValues;
   }
 
-  addExecution(execute: executeFunctionType) {
+  addDataConnection(execute: executeFunctionType) {
     let inputValues: any = {};
     let isInputEmpty = false;
     for (let key in this.userInput) {
