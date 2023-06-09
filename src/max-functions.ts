@@ -58,10 +58,8 @@ setTokenPrefix(tokenPrefix),
   
   
 // -- Add data connection --
-
-
 // A sync table that lists all of the user's repos.
-emma.addSyncTable({
+emma.addDataConnection({
   name: "Repos",
   description: "All of the repos that the user has access to.",
   identityName: "Repo",
