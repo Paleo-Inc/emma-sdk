@@ -28,6 +28,11 @@ export interface DefaultAuthenticationType {
   userInput?: InputType[];
 }
 
-type FetcherFunction<T> = (url: string, options?: FetcherOptions) => Promise<T>;
+export type FetcherFunction<T> = (
+  url: string,
+  options?: FetcherOptions
+) => Promise<T>;
 
-export type executeFunctionType = (fetcher: FetcherFunction<any>) => void;
+export type executeFunctionType = (
+  fetcher: FetcherFunction<any>
+) => Promise<any>;

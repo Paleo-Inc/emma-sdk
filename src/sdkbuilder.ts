@@ -6,6 +6,7 @@ import {
   InputType,
   executeFunctionType,
 } from "./types";
+import { DataConnectionDefinition, fetchDefinition } from "./schema";
 
 export function newIntegration() {
   return new EmmaSdk();
@@ -14,6 +15,9 @@ export function newIntegration() {
 class EmmaSdk {
   defaultAuthentication?: DefaultAuthenticationType;
   networkDomain?: string;
+
+  dataConnections?: DataConnectionDefinition<string, any>[];
+
   constructor() {
     this.defaultAuthentication = {
       type: AuthenticationEnum.HEADERBEARER,
@@ -28,8 +32,33 @@ class EmmaSdk {
     return this;
   }
 
-  addDataConnection(execute: executeFunctionType) {
-    //
+  addDataConnection<K extends string, T extends string>({
+    name,
+    description,
+    identityName,
+    schema,
+    fetch,
+  }: DataConnectionDefinition<K, T>) {
+    // write code to validate schema
+    if (this.dataConnections && this.dataConnections.length) {
+      this.dataConnections.push({
+        name,
+        description,
+        identityName,
+        schema,
+        fetch,
+      });
+    } else {
+      this.dataConnections = [
+        {
+          name,
+          description,
+          identityName,
+          schema,
+          fetch,
+        },
+      ];
+    }
   }
 }
 
