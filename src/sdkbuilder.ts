@@ -13,7 +13,7 @@ export function newIntegration() {
 
 class EmmaSdk {
   defaultAuthentication?: DefaultAuthenticationType;
-
+  networkDomain?: string;
   constructor() {
     this.defaultAuthentication = {
       type: AuthenticationEnum.HEADERBEARER,
@@ -21,6 +21,11 @@ class EmmaSdk {
   }
   setAuthentication(data: DefaultAuthenticationType) {
     this.defaultAuthentication = data;
+  }
+
+  addNetworkDomain(domain: string): this {
+    this.networkDomain = domain;
+    return this;
   }
 
   addDataConnection(execute: executeFunctionType) {
