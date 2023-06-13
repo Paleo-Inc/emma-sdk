@@ -10,6 +10,8 @@ export enum ValueType {
   BOOLEAN = "boolean",
   OBJECT = "object",
   ARRAY = "array",
+  DATE = "date",
+  IMAGE = "image",
 }
 //
 export type GenericObjectSchema = Record<string, string>;
