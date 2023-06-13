@@ -5,6 +5,8 @@ export type FetcherOptions = RequestInit & {
   // Additional custom options if needed
 };
 
+const MAX_RESPONSE_SIZE = 4 * 1024 * 1024;
+
 export async function fetcher<T>(
   url: string,
   options: FetcherOptions = {}
@@ -21,7 +23,11 @@ export async function fetcher<T>(
   };
 
   const response: Response = await fetch(url, mergedOptions);
+  const contentLength = Number(response.headers.get("Content-Length"));
 
+  if (contentLength > MAX_RESPONSE_SIZE) {
+    throw new Error("Response size exceeds the limit.");
+  }
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`);
   }
