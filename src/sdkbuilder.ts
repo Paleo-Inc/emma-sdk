@@ -36,6 +36,7 @@ class EmmaSdk {
     name,
     description,
     identityName,
+    identityTitle,
     schema,
     fetch,
   }: DataConnectionDefinition<K, T>) {
@@ -45,6 +46,7 @@ class EmmaSdk {
         name,
         description,
         identityName,
+        identityTitle,
         schema,
         fetch,
       });
@@ -54,6 +56,7 @@ class EmmaSdk {
           name,
           description,
           identityName,
+          identityTitle,
           schema,
           fetch,
         },

@@ -63,6 +63,8 @@ export interface DataConnectionDefinition<K extends string, L extends string> {
 
   identityName: string;
 
+  identityTitle: string;
+
   schema: ObjectSchemaDefinition<K, L>;
 
   fetch: fetchDefinition<K, any>;
