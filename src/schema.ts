@@ -18,14 +18,24 @@ export type GenericObjectSchema = Record<string, string>;
 
 export interface BooleanSchema {
   type: ValueType.BOOLEAN;
+  name?: string;
+  description?: string;
+  friendlyName?: string;
 }
 
 export interface ArraySchema {
   type: ValueType.ARRAY;
+  name?: string;
+  description?: string;
+  friendlyName?: string;
+  items?: any;
 }
 
 export interface StringSchema {
   type: ValueType.STRING;
+  name?: string;
+  description?: string;
+  friendlyName?: string;
 }
 
 export type Schema =
