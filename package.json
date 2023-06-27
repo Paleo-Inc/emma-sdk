@@ -1,7 +1,7 @@
 {
-  "name": "emma-sdk",
+  "name": "sdk-emma",
   "version": "1.0.0",
-  "description": "Npm sdk package which provide helper functions when writing integration code in Emma",
+  "description": "The "Emma SDK" is an NPM package that offers convenient helper functions specifically designed to assist developers in writing integration code for Emma.",
   "main": "lib/index.js",
   "files": [
     "lib/**/*"
@@ -32,5 +32,9 @@
   },
   "dependencies": {
     "cross-fetch": "^3.1.6"
+  },
+  "types": "./lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
   }
 }
