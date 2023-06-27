@@ -1,7 +1,7 @@
 {
   "name": "sdk-emma",
   "version": "1.0.0",
-  "description": "The "Emma SDK" is an NPM package that offers convenient helper functions specifically designed to assist developers in writing integration code for Emma.",
+  "description": "The Emma SDK is an NPM package that offers convenient helper functions specifically designed to assist developers in writing integration code for Emma.",
   "main": "lib/index.js",
   "files": [
     "lib/**/*"
