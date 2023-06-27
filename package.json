@@ -1,11 +1,15 @@
 {
-  "name": "sdk-emma",
-  "version": "1.0.0",
+  "name": "@paleo-org/emma-sdk",
+  "version": "0.0.1",
   "description": "The Emma SDK is an NPM package that offers convenient helper functions specifically designed to assist developers in writing integration code for Emma.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
     "lib/**/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
@@ -17,6 +21,7 @@
   "keywords": [
     "Emma",
     "SDK",
+    "sdk-emma",
     "emma-sdk",
     "paleo-sdk"
   ],
@@ -33,7 +38,6 @@
   "dependencies": {
     "cross-fetch": "^3.1.6"
   },
-  "types": "./lib/index.d.ts",
   "directories": {
     "lib": "lib"
   }
