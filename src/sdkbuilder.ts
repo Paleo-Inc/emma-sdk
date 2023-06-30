@@ -6,7 +6,11 @@ import {
   InputType,
   executeFunctionType,
 } from "./types";
-import { DataConnectionDefinition, fetchDefinition } from "./schema";
+import {
+  checkKeyName,
+  DataConnectionDefinition,
+  fetchDefinition,
+} from "./schema";
 
 export function newIntegration() {
   return new EmmaSdk();
@@ -24,6 +28,11 @@ class EmmaSdk {
     };
   }
   setAuthentication(data: DefaultAuthenticationType) {
+    if (data.userInput && data.userInput.length > 0) {
+      for (let i = 0; i < data.userInput.length; i++) {
+        checkKeyName(data.userInput[i].key);
+      }
+    }
     this.defaultAuthentication = data;
   }
 
@@ -41,6 +50,11 @@ class EmmaSdk {
     fetch,
   }: DataConnectionDefinition<K, T>) {
     // write code to validate schema
+    if (fetch && fetch.parameters && fetch.parameters.length) {
+      for (let i = 0; i < fetch.parameters.length; i++) {
+        checkKeyName(fetch.parameters[i].key);
+      }
+    }
     if (this.dataConnections && this.dataConnections.length) {
       this.dataConnections.push({
         name,

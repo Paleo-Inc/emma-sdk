@@ -108,10 +108,15 @@ function validateSchema<
 >(schema: T) {
   checkIfExistInProperty(schema, schema.idProperty);
   checkIfExistInProperty(schema, schema.displayProperty);
+  checkKeyName(schema.idProperty);
+  checkKeyName(schema.displayProperty);
   if (schema.featuredProperties) {
     schema.featuredProperties.forEach((key) => {
       checkIfExistInProperty(schema, key);
     });
+  }
+  for (const key in schema.properties) {
+    checkKeyName(key);
   }
 }
 
@@ -122,5 +127,11 @@ function checkIfExistInProperty<
 >(schema: T, key: string) {
   if (!Object.keys(schema.properties).includes(key)) {
     throw new Error(`Key ${key} does not exist in properties`);
+  }
+}
+
+export function checkKeyName(key: string) {
+  if (!key.match(/^[a-zA-Z0-9_]+$/)) {
+    throw new Error(`Key ${key} is not valid`);
   }
 }
