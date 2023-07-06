@@ -1,6 +1,8 @@
-![Alt Text](/src/Emma-logo-light00002.svg)
+<img src="src/logo-colored.svg" alt="Emma logo" style="max-width: 200px; margin-bottom: 20px">
 
-# EMMA SDK
+## EMMA SDK
+
+<hr>
 
 The Emma SDK is an NPM package that offers convenient helper functions specifically designed to assist developers in writing integration code for [Emma](https://getemma.ai/).
 
