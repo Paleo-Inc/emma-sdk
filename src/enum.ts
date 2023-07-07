@@ -4,4 +4,5 @@ export enum AuthenticationEnum {
   QUERYSTRING = "queryString",
   MULTIPLEPARAMS = "multipleParams",
   OAuth2 = "OAuth2",
+  NOAUTH = "noAuth",
 }

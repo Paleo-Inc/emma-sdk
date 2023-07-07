@@ -22,7 +22,11 @@ class EmmaSdk {
 
   dataConnections?: DataConnectionDefinition<string, any>[];
 
-  constructor() {}
+  constructor() {
+    this.defaultAuthentication = {
+      type: AuthenticationEnum.NOAUTH,
+    };
+  }
   setAuthentication(data: DefaultAuthenticationType) {
     if (data.userInput && data.userInput.length > 0) {
       for (let i = 0; i < data.userInput.length; i++) {
