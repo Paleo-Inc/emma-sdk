@@ -1,11 +1,6 @@
 import { AuthenticationEnum } from "./enum";
 import { fetcher, HttpMethod } from "./cross-fetcher";
-import {
-  DefaultAuthenticationType,
-  FixedHeaderType,
-  InputType,
-  executeFunctionType,
-} from "./types";
+import { DefaultAuthenticationType } from "./types";
 import {
   checkKeyName,
   DataConnectionDefinition,
@@ -32,6 +27,16 @@ class EmmaSdk {
       for (let i = 0; i < data.userInput.length; i++) {
         checkKeyName(data.userInput[i].key);
       }
+    }
+    if (data.requireEndPoint && !data.manualEndPoint) {
+      throw new Error(
+        "ManualEndPoint is required when requireEndPoint is true"
+      );
+    }
+    if (data.manualEndPoint && !data.requireEndPoint) {
+      throw new Error(
+        "Please set requireEndPoint to true when manualEndPoint is set"
+      );
     }
     this.defaultAuthentication = data;
   }

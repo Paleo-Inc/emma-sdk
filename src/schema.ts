@@ -1,7 +1,7 @@
 // Purpose: Defines the schema for the configuration file.
 
 import { deepCopy } from "./helper";
-import { FetcherFunction, InputType } from "./types";
+import { ContextType, InputType } from "./types";
 
 // this value type is used to define the type of the value of the schema or any return type
 export enum ValueType {
@@ -63,7 +63,7 @@ export interface ObjectSchemaDefinition<K extends string, L extends string> {
 export interface fetchDefinition<K, T> {
   parameters?: Array<K>;
 
-  execute: (inputs: string[], fetcher: FetcherFunction<T>) => Promise<T>;
+  execute: (inputs: string[], context: ContextType) => Promise<T>;
 }
 
 export interface DataConnectionDefinition<K extends string, L extends string> {

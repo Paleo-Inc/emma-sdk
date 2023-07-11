@@ -22,10 +22,14 @@ export interface DefaultAuthenticationType {
   authorizationParams?: FixedHeaderType[] | undefined;
   tokenParams?: FixedHeaderType[] | undefined;
   scope?: string[] | null;
-  getConnectionName?: (fetcher: FetcherFunction<any>) => string;
+  requireEndPoint?: boolean | null;
+  manualEndPoint?: InputType | null;
+  getConnectionName?: (context: ContextType) => string;
+  verifyCredentials?: (context: ContextType) => boolean;
   instructionUrl?: string | undefined;
   customKey?: string;
   userInput?: InputType[];
+  tokenPrefix?: string;
 }
 
 export type FetcherFunction<T> = (
@@ -33,6 +37,8 @@ export type FetcherFunction<T> = (
   options?: FetcherOptions
 ) => Promise<T>;
 
-export type executeFunctionType = (
-  fetcher: FetcherFunction<any>
-) => Promise<any>;
+export type ContextType = {
+  fetcher: FetcherFunction<any>;
+  endpoint?: string;
+  [key: string]: any;
+};
