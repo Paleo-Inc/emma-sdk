@@ -24,8 +24,8 @@ export interface DefaultAuthenticationType {
   scope?: string[] | null;
   requireEndPoint?: boolean | null;
   manualEndPoint?: InputType | null;
-  getConnectionName?: (context: ContextType) => string;
-  verifyCredentials?: (context: ContextType) => boolean;
+  getConnectionName?: (context: ContextType) => Promise<string>;
+  verifyCredentials?: (context: ContextType) => Promise<boolean>;
   instructionUrl?: string | undefined;
   customKey?: string;
   userInput?: InputType[];
