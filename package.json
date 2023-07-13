@@ -1,6 +1,6 @@
 {
   "name": "@paleo-org/emma-sdk",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "The Emma SDK is an NPM package that offers convenient helper functions specifically designed to assist developers in writing integration code for Emma.",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
