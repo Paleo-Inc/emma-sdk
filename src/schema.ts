@@ -16,40 +16,67 @@ export enum ValueType {
 //
 export type GenericObjectSchema = Record<string, string>;
 
-export interface BooleanSchema {
+export type BooleanSchema = {
   type: ValueType.BOOLEAN;
   name?: string;
   description?: string;
   friendlyName?: string;
-}
+  default?: boolean;
+  required?: boolean;
+};
 
-export interface ArraySchema {
+export type ArraySchema = {
   type: ValueType.ARRAY;
   name?: string;
   description?: string;
   friendlyName?: string;
+  default?: boolean;
+  required?: boolean;
   items?: any;
-}
+};
 
-export interface StringSchema {
+export type StringSchema = {
   type: ValueType.STRING;
   name?: string;
   description?: string;
   friendlyName?: string;
-}
+  default?: boolean;
+  required?: boolean;
+};
+export type NumberSchema = {
+  type: ValueType.NUMBER;
+  name?: string;
+  description?: string;
+  friendlyName?: string;
+  default?: boolean;
+  required?: boolean;
+};
+
+export type DateSchema = {
+  type: ValueType.DATE;
+  name?: string;
+  description?: string;
+  friendlyName?: string;
+  default?: boolean;
+  required?: boolean;
+};
 
 export type Schema =
   | BooleanSchema
   | StringSchema
   | ArraySchema
+  | NumberSchema
+  | DateSchema
   | GenericObjectSchema;
 
 export type ObjectSchemaProperties<K extends string = never> = {
-  [K2 in K | string]: Schema;
+  [K2 in K | string]: Schema | ObjectSchemaProperties<K>;
 };
 
 export interface ObjectSchemaDefinition<K extends string, L extends string> {
   type: ValueType.OBJECT;
+
+  friendlyName?: string;
 
   properties: ObjectSchemaProperties<K | L>;
 
