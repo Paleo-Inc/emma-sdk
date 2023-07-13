@@ -14,7 +14,7 @@ export enum ValueType {
   IMAGE = "image",
 }
 //
-export type GenericObjectSchema = Record<string, string>;
+export type GenericObjectSchema = Record<string, string | boolean>;
 
 export type BooleanSchema = {
   type: ValueType.BOOLEAN;
@@ -70,7 +70,7 @@ export type Schema =
   | GenericObjectSchema;
 
 export type ObjectSchemaProperties<K extends string = never> = {
-  [K2 in K | string]: Schema | ObjectSchemaProperties<K>;
+  [K2 in K | string]: Schema | ObjectSchemaDefinition<K, string>;
 };
 
 export interface ObjectSchemaDefinition<K extends string, L extends string> {
