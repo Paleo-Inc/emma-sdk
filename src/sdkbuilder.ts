@@ -28,6 +28,11 @@ class EmmaSdk {
         checkKeyName(data.userInput[i].key);
       }
     }
+    if (data.type == AuthenticationEnum.OAuth2) {
+      if (!data.tokenUrl || !data.authorizationUrl) {
+        throw new Error("TokenUrl and AuthorizationUrl is required for OAuth2");
+      }
+    }
     if (data.requireEndPoint && !data.manualEndPoint) {
       throw new Error(
         "ManualEndPoint is required when requireEndPoint is true"
