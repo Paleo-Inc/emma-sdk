@@ -33,14 +33,23 @@ class EmmaSdk {
         throw new Error("TokenUrl and AuthorizationUrl is required for OAuth2");
       }
     }
-    if (data.requireEndPoint && !data.manualEndPoint) {
+    if (
+      data.requireEndPoint &&
+      !data.manualEndPoint &&
+      !data.generateCustomEndpoint
+    ) {
       throw new Error(
-        "ManualEndPoint is required when requireEndPoint is true"
+        "Endpoint method(manualEndPoing/generateCustomEndpoint) is required when requireEndPoint is true"
       );
     }
     if (data.manualEndPoint && !data.requireEndPoint) {
       throw new Error(
         "Please set requireEndPoint to true when manualEndPoint is set"
+      );
+    }
+    if (data.generateCustomEndpoint && !data.requireEndPoint) {
+      throw new Error(
+        "Please set requireEndPoint to true when generateCustomEndpoint is set"
       );
     }
     this.defaultAuthentication = data;
