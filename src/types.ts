@@ -1,6 +1,6 @@
 import { FetcherOptions } from "./cross-fetcher";
 import { AuthenticationEnum } from "./enum";
-import { ValueType } from "./schema";
+import { ValueType, fetchDefinition } from "./schema";
 
 export type InputType = {
   key: string;
@@ -22,6 +22,7 @@ export interface DefaultAuthenticationType {
   authorizationParams?: FixedHeaderType[] | undefined;
   tokenParams?: FixedHeaderType[] | undefined;
   scope?: string[] | null;
+  generateCustomEndpoint?: fetchDefinition<InputType, string>;
   requireEndPoint?: boolean | null;
   manualEndPoint?: InputType | null;
   getConnectionName?: (context: ContextType) => Promise<string>;
