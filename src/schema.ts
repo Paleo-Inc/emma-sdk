@@ -100,8 +100,6 @@ export interface DataConnectionDefinition<K extends string, L extends string> {
 
   identityName: string;
 
-  identityTitle: string;
-
   schema: ObjectSchemaDefinition<K, L>;
 
   fetch: fetchDefinition<InputType, any>;
@@ -134,9 +132,8 @@ function validateSchema<
   T extends ObjectSchemaDefinition<K, L>
 >(schema: T) {
   checkIfExistInProperty(schema, schema.idProperty);
-  checkIfExistInProperty(schema, schema.displayProperty);
+  checkDisplayProperty(schema, schema.displayProperty);
   checkKeyName(schema.idProperty);
-  checkKeyName(schema.displayProperty);
   if (schema.featuredProperties) {
     schema.featuredProperties.forEach((key) => {
       checkIfExistInProperty(schema, key);
@@ -146,7 +143,20 @@ function validateSchema<
     checkKeyName(key);
   }
 }
-
+function checkDisplayProperty<
+  K extends string,
+  L extends string,
+  T extends ObjectSchemaDefinition<K, L>
+>(schema: T, key: string) {
+  let keysList = key.match(/{[a-zA-Z0-9_]+}/g);
+  if (!keysList || keysList.length == 0) {
+    throw new Error(`Display property ${key} does not contain any schema key`);
+  }
+  let keys = keysList.map((key) => key.replace("{", "").replace("}", ""));
+  keys.forEach((key) => {
+    checkIfExistInProperty(schema, key);
+  });
+}
 function checkIfExistInProperty<
   K extends string,
   L extends string,
