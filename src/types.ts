@@ -10,6 +10,27 @@ export type InputType = {
   placeholder?: string;
 };
 
+export type StaticAutoCompleteType = {
+  display: string;
+  value: string | number;
+};
+
+export type FetchInputType = {
+  key: string;
+  type: ValueType;
+  name: string;
+  description: string;
+  placeholder?: string;
+  autocomplete?:
+    | Array<string>
+    | Array<StaticAutoCompleteType>
+    | Array<number>
+    | ((
+        context: ContextType,
+        search?: string | null
+      ) => Promise<Array<StaticAutoCompleteType>>);
+};
+
 export type FixedHeaderType = {
   key: string;
   value: string;
