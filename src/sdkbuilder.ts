@@ -68,9 +68,9 @@ class EmmaSdk {
     fetch,
   }: DataConnectionDefinition<K, T>) {
     // write code to validate schema
-    if (fetch && fetch.parameters && fetch.parameters.length) {
-      for (let i = 0; i < fetch.parameters.length; i++) {
-        checkKeyName(fetch.parameters[i].key);
+    if (fetch && fetch.userInput && fetch.userInput.length) {
+      for (let i = 0; i < fetch.userInput.length; i++) {
+        checkKeyName(fetch.userInput[i].key);
       }
     }
     if (this.dataConnections && this.dataConnections.length) {

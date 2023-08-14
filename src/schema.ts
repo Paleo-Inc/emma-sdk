@@ -88,7 +88,7 @@ export interface ObjectSchemaDefinition<K extends string, L extends string> {
 }
 
 export interface fetchDefinition<K, T> {
-  parameters?: Array<K>;
+  userInput?: Array<K>;
 
   execute: (inputs: string[], context: ContextType) => Promise<T>;
 }
