@@ -73,6 +73,26 @@ class EmmaSdk {
         checkKeyName(fetch.userInput[i].key);
       }
     }
+    // check for unique data connection name
+    if (this.dataConnections && this.dataConnections.length) {
+      for (let i = 0; i < this.dataConnections.length; i++) {
+        if (this.dataConnections[i].name.toLowerCase() == name.toLowerCase()) {
+          throw new Error(`Data connection name ${name} already exists`);
+        }
+      }
+    }
+
+    // check for no space and special character in name
+    if (name && name.length) {
+      if (name.match(/^[a-zA-Z0-9_]*$/)) {
+        // valid name
+      } else {
+        throw new Error(
+          "Data connection name should not contain space and special characters"
+        );
+      }
+    }
+
     if (this.dataConnections && this.dataConnections.length) {
       this.dataConnections.push({
         name,
