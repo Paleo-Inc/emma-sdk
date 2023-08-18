@@ -65,6 +65,7 @@ class EmmaSdk {
     description,
     identityName,
     schema,
+    item_link,
     fetch,
   }: DataConnectionDefinition<K, T>) {
     // write code to validate schema
@@ -98,6 +99,7 @@ class EmmaSdk {
         name,
         description,
         identityName,
+        item_link,
         schema,
         fetch,
       });
@@ -107,6 +109,7 @@ class EmmaSdk {
           name,
           description,
           identityName,
+          item_link,
           schema,
           fetch,
         },

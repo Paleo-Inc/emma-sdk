@@ -100,6 +100,8 @@ export interface DataConnectionDefinition<K extends string, L extends string> {
 
   identityName: string;
 
+  item_link?: (credential: any, data: any) => string;
+
   schema: ObjectSchemaDefinition<K, L>;
 
   fetch: fetchDefinition<FetchInputType, any>;
