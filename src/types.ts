@@ -42,6 +42,7 @@ export interface DefaultAuthenticationType {
   tokenUrl?: string | null;
   authorizationParams?: FixedHeaderType[] | undefined;
   tokenParams?: FixedHeaderType[] | undefined;
+  tokenRequestFormat?: "json" | "form";
   scope?: string[] | null;
   generateCustomEndpoint?: fetchDefinition<InputType, string>;
   requireEndPoint?: boolean | null;
