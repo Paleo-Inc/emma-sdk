@@ -4,6 +4,7 @@ import { DefaultAuthenticationType } from "./types";
 import {
   checkKeyName,
   DataConnectionDefinition,
+  DynamicDataConnectionDefinition,
   fetchDefinition,
 } from "./schema";
 
@@ -16,6 +17,8 @@ class EmmaSdk {
   networkDomain?: string;
 
   dataConnections?: DataConnectionDefinition<string, any>[];
+
+  dynamicDataConnections?: DynamicDataConnectionDefinition<string, any>[];
 
   constructor() {
     this.defaultAuthentication = {
@@ -111,6 +114,66 @@ class EmmaSdk {
           identityName,
           item_link,
           schema,
+          fetch,
+        },
+      ];
+    }
+  }
+
+  addDynamicDataConnection<K extends string, T extends string>({
+    name,
+    description,
+    identityName,
+    dynamicSchema,
+    userInputs,
+    item_link,
+    fetch,
+  }: DynamicDataConnectionDefinition<K, T>) {
+    // write code to validate schema
+    if (userInputs && userInputs.length) {
+      for (let i = 0; i < userInputs.length; i++) {
+        checkKeyName(userInputs[i].key);
+      }
+    }
+    // check for unique data connection name
+    if (this.dataConnections && this.dataConnections.length) {
+      for (let i = 0; i < this.dataConnections.length; i++) {
+        if (this.dataConnections[i].name.toLowerCase() == name.toLowerCase()) {
+          throw new Error(`Data connection name ${name} already exists`);
+        }
+      }
+    }
+
+    // check for no space and special character in name
+    if (name && name.length) {
+      if (name.match(/^[a-zA-Z0-9_]*$/)) {
+        // valid name
+      } else {
+        throw new Error(
+          "Data connection name should not contain space and special characters"
+        );
+      }
+    }
+
+    if (this.dynamicDataConnections && this.dynamicDataConnections.length) {
+      this.dynamicDataConnections.push({
+        name,
+        description,
+        identityName,
+        dynamicSchema,
+        userInputs,
+        item_link,
+        fetch,
+      });
+    } else {
+      this.dynamicDataConnections = [
+        {
+          name,
+          description,
+          identityName,
+          dynamicSchema,
+          userInputs,
+          item_link,
           fetch,
         },
       ];

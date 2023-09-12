@@ -21,6 +21,7 @@ export type FetchInputType = {
   name: string;
   description: string;
   placeholder?: string;
+  dependencies?: Array<string>;
   autocomplete?:
     | Array<string>
     | Array<StaticAutoCompleteType>

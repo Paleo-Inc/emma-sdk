@@ -93,6 +93,10 @@ export interface fetchDefinition<K, T> {
   execute: (inputs: string[], context: ContextType) => Promise<T>;
 }
 
+export interface dynamicFetchDefinition<T> {
+  execute: (inputs: string[], context: ContextType) => Promise<T>;
+}
+
 export interface DataConnectionDefinition<K extends string, L extends string> {
   name: string;
 
@@ -105,6 +109,28 @@ export interface DataConnectionDefinition<K extends string, L extends string> {
   schema: ObjectSchemaDefinition<K, L>;
 
   fetch: fetchDefinition<FetchInputType, any>;
+}
+
+export interface DynamicDataConnectionDefinition<
+  K extends string,
+  L extends string
+> {
+  name: string;
+
+  description?: string;
+
+  identityName: string;
+
+  item_link?: (credential: any, data: any) => string;
+
+  dynamicSchema: (
+    inputs: string[],
+    context: ContextType
+  ) => Promise<ObjectSchemaDefinition<K, L>>;
+
+  userInputs?: FetchInputType[];
+
+  fetch: dynamicFetchDefinition<any>;
 }
 export function makeObjectSchema<
   K extends string,
