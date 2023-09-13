@@ -28,7 +28,7 @@ export type FetchInputType = {
     | Array<number>
     | ((
         context: ContextType,
-        search?: string | null
+        inputs?: string[]
       ) => Promise<Array<StaticAutoCompleteType>>);
 };
 
