@@ -45,6 +45,9 @@ export interface DefaultAuthenticationType {
   tokenParams?: FixedHeaderType[] | undefined;
   tokenRequestFormat?: "json" | "form";
   scope?: string[] | null;
+  refreshTokenKey?: string | null;
+  refreshUrl?: string | null;
+  refreshParams?: FixedHeaderType[] | undefined;
   generateCustomEndpoint?: fetchDefinition<InputType, string>;
   requireEndPoint?: boolean | null;
   manualEndPoint?: InputType | null;
