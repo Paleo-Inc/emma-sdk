@@ -196,7 +196,7 @@ function checkIfExistInProperty<
 }
 
 export function checkKeyName(key: string) {
-  if (!key.match(/^[a-zA-Z0-9_]+$/)) {
+  if (!key.match(/^[a-zA-Z0-9_-]+$/)) {
     throw new Error(`Key ${key} is not valid`);
   }
 }
