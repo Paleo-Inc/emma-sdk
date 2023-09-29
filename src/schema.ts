@@ -176,7 +176,7 @@ function checkDisplayProperty<
   L extends string,
   T extends ObjectSchemaDefinition<K, L>
 >(schema: T, key: string) {
-  let keysList = key.match(/{[a-zA-Z0-9_]+}/g);
+  let keysList = key.match(/{[a-zA-Z0-9_-]+}/g);
   if (!keysList || keysList.length == 0) {
     throw new Error(`Display property ${key} does not contain any schema key`);
   }
