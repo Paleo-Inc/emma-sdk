@@ -1,10 +1,15 @@
 import { AuthenticationEnum } from "./enum";
 import { fetcher, HttpMethod } from "./cross-fetcher";
-import { DefaultAuthenticationType } from "./types";
+import {
+  ContextType,
+  DefaultAuthenticationType,
+  FetchInputType,
+} from "./types";
 import {
   checkKeyName,
   DataConnectionDefinition,
   DynamicDataConnectionDefinition,
+  dynamicFetchDefinition,
   fetchDefinition,
 } from "./schema";
 
@@ -15,6 +20,7 @@ export function newIntegration() {
 class EmmaSdk {
   defaultAuthentication?: DefaultAuthenticationType;
   networkDomain?: string;
+  testConnection?: fetchDefinition<FetchInputType, any>;
 
   dataConnections?: DataConnectionDefinition<string, any>[];
 
@@ -56,6 +62,10 @@ class EmmaSdk {
       );
     }
     this.defaultAuthentication = data;
+  }
+
+  testResponse(testResponseInputs: dynamicFetchDefinition<any>) {
+    this.testConnection = testResponseInputs;
   }
 
   addNetworkDomain(domain: string): this {
