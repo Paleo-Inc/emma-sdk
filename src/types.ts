@@ -52,6 +52,7 @@ export interface DefaultAuthenticationType {
   generateCustomEndpoint?: fetchDefinition<InputType, string>;
   requireEndPoint?: boolean | null;
   manualEndPoint?: InputType | null;
+  getWebhookId?: (context: ContextType) => Promise<string>;
   getConnectionName?: (context: ContextType) => Promise<string>;
   verifyCredentials?: (context: ContextType) => Promise<boolean>;
   instructionUrl?: string | undefined;

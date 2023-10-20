@@ -20,7 +20,8 @@ export function newIntegration() {
 class EmmaSdk {
   defaultAuthentication?: DefaultAuthenticationType;
   networkDomain?: string;
-  testConnection?: fetchDefinition<FetchInputType, any>;
+  webhook?: dynamicFetchDefinition<any>;
+  testConnection?: dynamicFetchDefinition<any>;
 
   dataConnections?: DataConnectionDefinition<string, any>[];
 
@@ -66,6 +67,10 @@ class EmmaSdk {
 
   testResponse(testResponseInputs: dynamicFetchDefinition<any>) {
     this.testConnection = testResponseInputs;
+  }
+
+  parseWebhoookData(webhookData: dynamicFetchDefinition<any>) {
+    this.webhook = webhookData;
   }
 
   addNetworkDomain(domain: string): this {
